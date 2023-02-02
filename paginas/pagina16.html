@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 16</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .cursor{
+        cursor: pointer;
+    }
+</style>
+<body class="pagina">
+    <img class="elementos" id="info" src="../img/pagina16/info.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="boton" src="../img/pagina16/boton.png" data-posX="0" data-posY="135" alt="">
+    <img class="elementos cursor" id="popup" src="../img/pagina16/popup.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const info = $('#info');
+        const boton = $('#boton');
+        const popup = $('#popup'); 
+
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_16_1.mp3'),
+            new Audio('../audios/Proporcional_16_2.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], clickNota, 1);
+            animacionEntrada(info, 'default', 1);
+        }
+
+        function clickNota(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                aplicacion.reproducirAudio(audio[1], finalPagina, 1);
+                animacionEntrada(popup, 'default', 1);
+            }
+        });
+
+        function finalPagina(){
+            animacionSalida(popup, 'default', 1);
+            aplicacion.terminaPantalla();
+        }
+
+
+    </script>
+</body>
+</html>

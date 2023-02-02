@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 11</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="fondo" src="../img/pagina11/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="subtema" src="../img/pagina11/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina11/dialogo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="info1" src="../img/pagina11/info1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="info2" src="../img/pagina11/info2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="boton" src="../img/pagina11/boton.png" data-posX="926" data-posY="271"/>
+    <img class="elementos" id="popup" src="../img/pagina11/popup.png" data-posX="0" data-posY="0"/>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const subtema = $('#subtema');
+        const dialogo = $('#dialogo');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const boton = $('#boton');
+        const popup = $('#popup');
+
+        const informacion = [dialogo, info1, info2];
+
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_10_6.mp3')
+        ]
+
+        const audioDialogo = [
+            new Audio('../audios/Proporcional_11_1.mp3'),
+            new Audio('../audios/Proporcional_11_2.mp3'),
+            new Audio('../audios/Proporcional_11_3.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(subtema, 'default', 1);
+            narrar();
+        }
+
+        function narrar(){
+            aplicacion.reproducirAudio(audioDialogo[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+        }
+
+        function siguiente(){
+            indexInfo++;
+            if(indexInfo < informacion.length){
+                narrar();
+            }
+            else{
+                clickNota();
+            }
+        }
+
+        function clickNota(){
+            parpadear(boton);
+        }
+
+        function finalPagina(){
+            animacionSalida(popup, 'default', 1);
+            aplicacion.terminaPantalla();
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton, true);
+                aplicacion.reproducirAudio(audio[0], finalPagina, 1);
+                animacionEntrada(popup, 'default', 1);
+            }
+        });
+
+    </script>
+</body>
+</html>

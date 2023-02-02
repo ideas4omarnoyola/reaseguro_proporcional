@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 20</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .cursor{
+        cursor: pointer;
+    }
+</style>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina25/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="subtema" src="../img/pagina25/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instruccion" src="../img/pagina25/instruccion.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos parte1" id="pregunta1" src="../img/pagina25/pregunta1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos parte2" id="pregunta2" src="../img/pagina25/pregunta2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos parte2" id="paloma1" src="../img/pagina25/paloma.png" data-posX="840" data-posY="272" alt="">
+    <img class="elementos parte1" id="paloma2" src="../img/pagina25/paloma.png" data-posX="840" data-posY="320" alt="">
+    <img class="elementos parte1" id="tache1" src="../img/pagina25/tache.png" data-posX="840" data-posY="272" alt="">
+    <img class="elementos parte2" id="tache2" src="../img/pagina25/tache.png" data-posX="840" data-posY="320" alt="">
+
+    <img class="elementos cursor parte1" id="boton1" src="../img/pagina25/boton.png" data-posX="115" data-posY="272" alt="">
+    <img class="elementos cursor parte1" id="boton2" src="../img/pagina25/boton.png" data-posX="115" data-posY="318" alt="">
+    <img class="elementos cursor parte2" id="boton3" src="../img/pagina25/boton.png" data-posX="115" data-posY="272" alt="">
+    <img class="elementos cursor parte2" id="boton4" src="../img/pagina25/boton.png" data-posX="115" data-posY="318" alt="">
+
+    <img class="elementos" id="retrobuena" src="../img/pagina25/retrobuena.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="retromala" src="../img/pagina25/retromala.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos parte1" id="siguiente1" src="../img/pagina25/siguiente.png" data-posX="438" data-posY="402" alt="">
+    <img class="elementos parte2" id="siguiente2" src="../img/pagina25/siguiente.png" data-posX="438" data-posY="402" alt="">
+    <img class="elementos" id="reintentar" src="../img/pagina25/reintentar.png" data-posX="438" data-posY="402" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const subtema = $('#subtema');
+        const fondo = $('#fondo');
+        const instruccion = $('#instruccion');
+        const pregunta1 = $('#pregunta1');
+        const pregunta2 = $('#pregunta2');
+        const paloma1 = $('#paloma1');
+        const paloma2 = $('#paloma2');
+        const tache1 = $('#tache1');
+        const tache2 = $('#tache2');
+        const boton1 = $('#boton1');
+        const boton2 = $('#boton2');
+        const boton3 = $('#boton3');
+        const boton4 = $('#boton4');
+        const retrobuena = $('#retrobuena');
+        const retromala = $('#retromala');
+        const siguiente1 = $('#siguiente1');
+        const siguiente2 = $('#siguiente2');
+        const reintentar = $('#reintentar');
+        const parte1 = $('.parte1');
+        const parte2 = $('.parte2');
+
+        let aciertos = 0;
+
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_26_1.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], actividad, 1);
+            animacionEntrada(subtema, 'default', 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(instruccion, 'default', 1);
+        }
+
+        function actividad(){
+            animacionSalida(instruccion, 'default', 1);
+            animacionEntrada(pregunta1, 'default', 1,1);
+            animacionEntrada(boton1, 'default', 1,1);
+            animacionEntrada(boton2, 'default', 1,1);
+        }
+
+        function entradaParte2(){
+            animacionSalida(parte1, 'default', 1);
+            animacionEntrada(pregunta2, 'default', 1, 1);
+            animacionEntrada(boton3, 'default', 1, 1);
+            animacionEntrada(boton4, 'default', 1, 1);
+        }
+
+        function retro(){
+            if(aciertos == 2){
+                animacionEntrada(retrobuena, 'default', 1);
+                setTimeout(() => {
+                    finalPagina();
+                }, 1000);
+            } else {
+                animacionEntrada(retromala, 'default', 1);
+                setTimeout(() => {
+                    parpadear(reintentar)
+                }, 1000);
+            }
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer'){
+                animacionEntrada(tache1, 'default', 1);
+                animacionSalida(boton2, 'default', 1);
+
+                setTimeout(() => {
+                    parpadear(siguiente1);
+                }, 1000);
+            }
+        });
+        boton2.click(function(){
+            if(boton2.css('cursor') == 'pointer'){
+                animacionEntrada(paloma2, 'default', 1);
+                animacionSalida(boton1, 'default', 1);
+
+                aciertos++;
+
+                setTimeout(() => {
+                    parpadear(siguiente1);
+                }, 1000);
+            }
+        });
+
+        siguiente1.click(function(){
+            if(siguiente1.css('cursor') == 'pointer'){
+                dejarParpadear(siguiente1);
+                entradaParte2();
+            }
+        });
+
+        boton3.click(function(){
+            if(boton3.css('cursor') == 'pointer'){
+                animacionEntrada(paloma1, 'default', 1);
+                animacionSalida(boton4, 'default', 1);
+
+                aciertos++;
+
+                setTimeout(() => {
+                    parpadear(siguiente2);
+                }, 1000);
+            }
+        });
+
+        boton4.click(function(){
+            if(boton4.css('cursor') == 'pointer'){
+                animacionEntrada(tache2, 'default', 1);
+                animacionSalida(boton3, 'default', 1);
+
+                setTimeout(() => {
+                    parpadear(siguiente2);
+                }, 1000);
+            }
+        });
+
+        siguiente2.click(function(){
+            if(siguiente2.css('cursor') == 'pointer'){
+                dejarParpadear(siguiente2);
+                animacionSalida(parte2, 'default', 1);
+                retro();
+            }
+        });
+        reintentar.click(function(){
+            if(reintentar.css('cursor') == 'pointer'){
+                dejarParpadear(reintentar);
+                aplicacion.recargarPagina();
+            }
+        });
+
+
+    </script>
+</body>
+</html>

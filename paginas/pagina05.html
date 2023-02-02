@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 05</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina05/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="subtema" src="../img/pagina05/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina05/dialogo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="boton" src="../img/pagina05/boton.png" data-posX="480" data-posY="235" alt="">
+    <img class="elementos" id="fondonegro" src="../img/pagina05/fondonegro.png" data-posX="0" data-posY="0"/>
+
+    
+    <video class="elementos" id="video1" data-posX="0" data-posY="80"  autobuffer controls controlsList="nodownload nofullscreen">
+        <source src="../videos/video_pag05.mp4" type="video/mp4" />
+    </video>
+
+
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const subtema = $('#subtema');
+        const fondo = $('#fondo');
+        const dialogo = $('#dialogo');
+        const boton = $('#boton');
+        const fondonegro = $('#fondonegro');
+
+        const video1 = $('#video1');
+
+        video1.css({
+            'width': '1020px',
+            'height': '470px'
+        });
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_5_1.mp3')
+        ]
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], clickVideo, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(subtema, 'default', 1);
+            animacionEntrada(dialogo, 'derecha-izquierda', 1, 1);
+            animacionEntrada(boton, 'default', 1, 1);
+        }
+
+        function clickVideo(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                animacionEntrada(fondonegro, 'default', 1);
+                animacionEntrada(video1, 'default', 1, 1);
+
+                setTimeout(()=>{
+                    document.getElementById("video1").play();
+                    video1.on("ended", function() {
+                        aplicacion.terminaPantalla();
+                    });
+                }, 1000);
+            }
+        });
+
+    </script>
+</body>
+</html>

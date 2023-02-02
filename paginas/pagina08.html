@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Omar Noyola">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 08</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    
+    <img class="elementos" id="subtema" src="../img/pagina08/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos parte1" id="dialogo1" src="../img/pagina08/dialogo1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte2" id="dialogo2" src="../img/pagina08/dialogo2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte2" id="esquema" src="../img/pagina08/esquema.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte1" id="txt1" src="../img/pagina08/txt1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte1" id="txt2" src="../img/pagina08/txt2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte1" id="txt3" src="../img/pagina08/txt3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte1" id="txt4" src="../img/pagina08/txt4.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte1" id="txt5" src="../img/pagina08/txt5.png" data-posX="0" data-posY="0"/>
+    <img class="elementos parte2" id="txt6" src="../img/pagina08/txt6.png" data-posX="0" data-posY="0"/>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const subtema = $('#subtema');
+        const dialogo1 = $('#dialogo1');
+        const dialogo2 = $('#dialogo2');
+        const esquema = $('#esquema');
+        const txt1 = $('#txt1');
+        const txt2 = $('#txt2');
+        const txt3 = $('#txt3');
+        const txt4 = $('#txt4');
+        const txt5 = $('#txt5');
+        const txt6 = $('#txt6');
+        const parte1 = $('.parte1');
+
+        const infoParte1 = [dialogo1, txt1, txt2, txt3, txt4, txt5];
+        let indexInfoP1 = 0;
+        const infoParte2 = [dialogo2, txt6, esquema];
+        let indexInfoP2 = 0;
+
+        // Audios------------------------------------------------------
+
+        const audioParte1 = [
+            new Audio('../audios/Proporcional_8_1.mp3'),
+            new Audio('../audios/Proporcional_8_2.mp3'),
+            new Audio('../audios/Proporcional_8_3.mp3'),
+            new Audio('../audios/Proporcional_8_4.mp3'),
+            new Audio('../audios/Proporcional_8_5.mp3'),
+            new Audio('../audios/Proporcional_8_6.mp3'),
+        ]
+        const audioParte2 = [
+            new Audio('../audios/Proporcional_8_7.mp3'),
+            new Audio('../audios/Proporcional_8_8.mp3'),
+            new Audio('../audios/audio0.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(subtema, 'default', 1);
+            narrarParte1();
+        }
+
+        function narrarParte1(){
+            aplicacion.reproducirAudio(audioParte1[indexInfoP1], siguienteP1, 1);
+            animacionEntrada(infoParte1[indexInfoP1], 'derecha-izquierda', 1);
+        }
+
+        function siguienteP1(){
+            indexInfoP1++;
+            if(indexInfoP1 < infoParte1.length){
+                narrarParte1();
+            }
+            else{
+                // aplicacion.terminaPantalla();
+                narrarParte2();
+            }
+        }
+
+        function narrarParte2(){
+            animacionSalida(parte1, 'default', 1);
+            aplicacion.reproducirAudio(audioParte2[indexInfoP2], siguienteP2, 1);
+            animacionEntrada(infoParte2[indexInfoP2], 'derecha-izquierda', 1);
+        }
+        function siguienteP2(){
+            indexInfoP2++;
+            if(indexInfoP2 < infoParte2.length){
+                narrarParte2();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>

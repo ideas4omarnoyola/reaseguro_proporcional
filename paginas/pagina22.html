@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 22</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina22/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="señal" src="../img/pagina22/señal.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro" src="../img/pagina22/cuadro.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="boton" src="../img/pagina22/boton.png" data-posX="926" data-posY="416" alt="">
+    <img class="elementos" id="popup" src="../img/pagina22/popup.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const señal = $('#señal');
+        const boton = $('#boton');
+        const cuadro = $('#cuadro');
+        const popup = $('#popup'); 
+
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_22_1.mp3'),
+            new Audio('../audios/Proporcional_22_2.mp3'),
+            new Audio('../audios/Proporcional_22_3.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutaCuadro, 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(señal, 'abajo-arriba', 1, 1);
+        }
+
+        function locutaCuadro(){
+            aplicacion.reproducirAudio(audio[1], clickNota, 1);
+            animacionEntrada(cuadro, 'izquierda-derecha', 1);
+        }
+
+        function clickNota(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+                animacionEntrada(popup, 'default', 1);
+            }
+        });
+
+        function finalPagina(){
+            animacionSalida(popup, 'default', 1);
+            aplicacion.terminaPantalla();
+        }
+
+
+    </script>
+</body>
+</html>

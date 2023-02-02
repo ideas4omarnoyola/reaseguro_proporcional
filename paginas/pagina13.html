@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 13</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .cursor{
+        cursor: pointer;
+    }
+</style>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina13/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="subtema" src="../img/pagina13/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina13/dialogo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info" src="../img/pagina13/info.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="boton" src="../img/pagina13/boton.png" data-posX="951" data-posY="187" alt="">
+    <img class="elementos cursor" id="popup" src="../img/pagina13/popup.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const dialogo= $('#dialogo');
+        const subtema = $('#subtema');
+        const fondo = $('#fondo');
+        const info = $('#info');
+        const boton = $('#boton');
+        const popup = $('#popup'); 
+
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_13_1.mp3'),
+            new Audio('../audios/Proporcional_13_2.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutaInfo, 1);
+            animacionEntrada(subtema, 'default', 1);
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(dialogo, 'derecha-izquierda', 1);
+        }
+        function locutaInfo(){
+            aplicacion.reproducirAudio(audio[1], clickNota, 1);
+            animacionEntrada(info, 'abajo-arriba', 1);
+        }
+
+        function clickNota(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                animacionEntrada(popup, 'default', 1);
+            }
+        });
+        popup.click(function(){
+            if(popup.css('cursor') == 'pointer'){
+                animacionSalida(popup, 'default', 1);
+                finalPagina();
+            }
+        });
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+
+    </script>
+</body>
+</html>

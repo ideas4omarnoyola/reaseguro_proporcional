@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 19</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="subtema" src="../img/pagina19/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina19/dialogo.png" data-posX="0" data-posY="0" alt=""> 
+    <img class="elementos" id="mapa" src="../img/pagina19/mapa.png" data-posX="0" data-posY="0" alt=""> 
+    <img class="elementos" id="boton1" src="../img/pagina19/boton1.png" data-posX="591" data-posY="323" alt="">
+    <img class="elementos" id="boton2" src="../img/pagina19/boton2.png" data-posX="485" data-posY="170" alt="">
+    <img class="elementos" id="info1" src="../img/pagina19/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2" src="../img/pagina19/info2.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const subtema = $('#subtema');
+        const dialogo = $('#dialogo');
+        const mapa = $('#mapa');
+        const boton1= $('#boton1');
+        const boton2= $('#boton2');
+        const info1 = $('#info1'); 
+        const info2 = $('#info2'); 
+
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_19_1.mp3'),
+            new Audio('../audios/Proporcional_19_2.mp3'),
+            new Audio('../audios/Proporcional_19_3.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], clickBtn1, 1);
+            animacionEntrada(subtema, 'default', 1);
+            animacionEntrada(dialogo, 'derecha-izquierda', 1);
+            animacionEntrada(mapa, 'abajo-arriba', 1, 1);
+            animacionEntrada(boton1, 'abajo-arriba', 1, 1);
+            animacionEntrada(boton2, 'abajo-arriba', 1, 1);
+        }
+
+        function clickBtn1(){
+            parpadear(boton1);
+        }
+        function clickBtn2(){
+            animacionSalida(info1, 'default', 1);
+            parpadear(boton2);
+        }
+
+        boton1.click(function(){
+            if(boton1.css('cursor') == 'pointer'){
+                dejarParpadear(boton1);
+                aplicacion.reproducirAudio(audio[1], clickBtn2, 1);
+                animacionEntrada(info1, 'default', 1);
+            }
+        });
+        boton2.click(function(){
+            if(boton2.css('cursor') == 'pointer'){
+                dejarParpadear(boton2);
+                aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+                animacionEntrada(info2, 'default', 1);
+            }
+        });
+
+        function finalPagina(){
+            animacionSalida(info2, 'default', 1);
+            aplicacion.terminaPantalla();
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 07</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .cursor{
+        cursor: pointer;
+    }
+</style>
+<body class="pagina">
+    <img class="elementos" id="subtema" src="../img/pagina07/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo" src="../img/pagina07/dialogo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="diagrama" src="../img/pagina07/diagrama.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btn1" src="../img/pagina07/btn1.png" data-posX="64.85" data-posY="300" alt="">
+    <img class="elementos" id="btn2" src="../img/pagina07/btn2.png" data-posX="367.951" data-posY="298" alt="">
+    <img class="elementos" id="btn3" src="../img/pagina07/btn3.png" data-posX="898" data-posY="126" alt="">
+    <img class="elementos cursor" id="popup1" src="../img/pagina07/popup1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos cursor" id="popup2" src="../img/pagina07/popup2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos cursor" id="popup3" src="../img/pagina07/popup3.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const dialogo= $('#dialogo');
+        const subtema = $('#subtema');
+        const diagrama = $('#diagrama');
+        const btn1 = $('#btn1');
+        const btn2 = $('#btn2');
+        const btn3 = $('#btn3');
+        const popup1 = $('#popup1');
+        const popup2 = $('#popup2');
+        const popup3 = $('#popup3');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_7_1.mp3'),
+            new Audio('../audios/Proporcional_7_2.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], clickBtn1, 1);
+            animacionEntrada(subtema, 'default', 1);
+            animacionEntrada(dialogo, 'derecha-izquierda', 1);
+            animacionEntrada(diagrama, 'default', 1, 1);
+            animacionEntrada(btn1, 'default', 1, 1);
+            animacionEntrada(btn2, 'default', 1, 1);
+        }
+
+        function clickBtn1(){
+            parpadear(btn1);
+        }
+        function clickBtn2(){
+            parpadear(btn2);
+        }
+        function clickBtn3(){
+            parpadear(btn3);
+        }
+
+        btn1.click(function(){
+            if(btn1.css('cursor') == 'pointer'){
+                dejarParpadear(btn1);
+                animacionEntrada(popup1, 'default', 1);
+            }
+        });
+        popup1.click(function(){
+            if(popup1.css('cursor') == 'pointer'){
+                animacionSalida(popup1, 'default', 1);
+                clickBtn2();
+            }
+        });
+        btn2.click(function(){
+            if(btn2.css('cursor') == 'pointer'){
+                dejarParpadear(btn2);
+                animacionEntrada(popup2, 'default', 1);
+            }
+        });
+        popup2.click(function(){
+            if(popup2.css('cursor') == 'pointer'){
+                animacionSalida(popup2, 'default', 1);
+                clickBtn3();
+            }
+        });
+        btn3.click(function(){
+            if(btn3.css('cursor') == 'pointer'){
+                dejarParpadear(btn3);
+                aplicacion.reproducirAudio(audio[1], salirNota, 1);
+                animacionEntrada(popup3, 'default', 1);
+            }
+        });
+
+        function salirNota(){
+            animacionSalida(popup3, 'default', 1);
+            finalPagina();
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+
+    </script>
+</body>
+</html>

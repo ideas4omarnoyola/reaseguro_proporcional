@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 06</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="subtema" src="../img/pagina06/subtema.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instruccion" src="../img/pagina06/instruccion.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="tarjeta1" src="../img/pagina06/tarjeta1.png" data-posX="77" data-posY="220" alt="">
+    <img class="elementos botones" id="tarjeta2" src="../img/pagina06/tarjeta2.png" data-posX="259" data-posY="220" alt="">
+    <img class="elementos botones" id="tarjeta3" src="../img/pagina06/tarjeta3.png" data-posX="441" data-posY="220" alt="">
+    <img class="elementos botones" id="tarjeta4" src="../img/pagina06/tarjeta4.png" data-posX="623" data-posY="220" alt="">
+    <img class="elementos botones" id="tarjeta5" src="../img/pagina06/tarjeta5.png" data-posX="805" data-posY="220" alt="">
+
+    <img class="elementos" id="info1" src="../img/pagina06/info1.png" data-posX="77" data-posY="220" alt="">
+    <img class="elementos" id="info2" src="../img/pagina06/info2.png" data-posX="259" data-posY="220" alt="">
+    <img class="elementos" id="info3" src="../img/pagina06/info3.png" data-posX="441" data-posY="220" alt="">
+    <img class="elementos" id="info4" src="../img/pagina06/info4.png" data-posX="623" data-posY="220" alt="">
+    <img class="elementos" id="info5" src="../img/pagina06/info5.png" data-posX="805" data-posY="220" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const instruccion= $('#instruccion');
+        const subtema = $('#subtema');
+
+        const tarjeta1 = $('#tarjeta1');
+        const tarjeta2 = $('#tarjeta2');
+        const tarjeta3 = $('#tarjeta3');
+        const tarjeta4 = $('#tarjeta4');
+        const tarjeta5 = $('#tarjeta5');
+
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+        const info4 = $('#info4');
+        const info5 = $('#info5');
+
+        const botones = $('.botones');
+        const botonActivo = [tarjeta1, tarjeta2, tarjeta3, tarjeta4, tarjeta5];
+        const info = [info1, info2, info3, info4, info5];
+
+        let indexInfo = 0;
+        let zIndex = 1;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_6_1.mp3')
+        ]
+
+        const audioInfo = [
+            new Audio('../audios/Proporcional_6_2.mp3'),
+            new Audio('../audios/Proporcional_6_3.mp3'),
+            new Audio('../audios/Proporcional_6_4.mp3'),
+            new Audio('../audios/Proporcional_6_6.mp3'),
+            new Audio('../audios/Proporcional_6_7.mp3'),
+        ]
+        
+
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], botonera, 1);
+            animacionEntrada(subtema, 'default', 1);
+            animacionEntrada(instruccion, 'default', 1);
+            animacionEntrada(tarjeta1, 'arriba-abajo', 1, 1);
+            animacionEntrada(tarjeta2, 'arriba-abajo', 1, 1.5);
+            animacionEntrada(tarjeta3, 'arriba-abajo', 1, 2);
+            animacionEntrada(tarjeta4, 'arriba-abajo', 1, 2.5);
+            animacionEntrada(tarjeta5, 'arriba-abajo', 1, 3);
+        }
+
+        function botonera(){
+
+            parpadear(botonActivo[indexInfo]);
+            botonActivo[indexInfo].css( "zIndex", zIndex + indexInfo);
+        }
+
+        botones.each(function(){
+            $(this).click(function(){
+                if($(this).css('cursor') == 'pointer'){
+                    dejarParpadear($(this));
+                    botonActivo[indexInfo].css( "zIndex", 0);
+                    aplicacion.reproducirAudio(audioInfo[indexInfo], siguiente, 1);
+                    animacionEntrada(info[indexInfo], 'default', 1, 1);
+                }
+            });
+        });
+
+        function siguiente() {  
+            indexInfo++;
+            
+            if(indexInfo < info.length){
+                setTimeout(()=>{
+                    botonera();
+                }, 1000);
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+
+    </script>
+</body>
+</html>
