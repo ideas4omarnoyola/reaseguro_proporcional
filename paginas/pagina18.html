@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 18</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .cursor{
+        cursor: pointer;
+    }
+</style>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina18/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cuadro1" src="../img/pagina18/cuadro1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos cursor" id="cuadro2" src="../img/pagina18/cuadro2.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const cuadro1 = $('#cuadro1');
+        const cuadro2 = $('#cuadro2'); 
+
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_18_1.mp3'),
+            new Audio('../audios/Proporcional_18_2.mp3'),
+            new Audio('../audios/Proporcional_18_3.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutaCuadro1, 1);
+            animacionEntrada(fondo, 'default', 1);
+        }
+
+        function locutaCuadro1(){
+            aplicacion.reproducirAudio(audio[1], locutaCuadro2, 1);
+            animacionEntrada(cuadro1, 'arriba-abajo', 1)
+        }
+        function locutaCuadro2(){
+            aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+            animacionEntrada(cuadro2, 'arriba-abajo', 1)
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+
+    </script>
+</body>
+</html>
