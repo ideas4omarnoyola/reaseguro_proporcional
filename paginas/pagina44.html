@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 44</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    <img class="elementos" id="fondo" src="../img/pagina44/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="titulo" src="../img/pagina44/titulo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina44/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="iniciar" src="../img/pagina44/iniciar.png" data-posX="438" data-posY="348" alt="">
+
+    <img class="elementos" id="base" src="../img/pagina44/base.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Pregunta 1 -->
+    <img class="elementos" id="p1" src="../img/pagina44/p1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r1_a" src="../img/pagina44/r1_a.png" data-posX="77" data-posY="352" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r1_b" src="../img/pagina44/r1_b.png" data-posX="77" data-posY="398" data-respuesta="m" alt="">
+    <img class="elementos" id="bien1" src="../img/pagina44/paloma.png" data-posX="847" data-posY="352" alt="">
+    <img class="elementos" id="mal1" src="../img/pagina44/tache.png" data-posX="847" data-posY="404" alt="">
+
+    <!-- Pregunta 2 -->
+    <img class="elementos" id="p2" src="../img/pagina44/p2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r2_a" src="../img/pagina44/r2_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r2_b" src="../img/pagina44/r2_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien2" src="../img/pagina44/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal2" src="../img/pagina44/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 3 -->
+    <img class="elementos" id="p3" src="../img/pagina44/p3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r3_a" src="../img/pagina44/r3_a.png" data-posX="77" data-posY="352" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r3_b" src="../img/pagina44/r3_b.png" data-posX="77" data-posY="398" data-respuesta="m" alt="">
+    <img class="elementos" id="bien3" src="../img/pagina44/paloma.png" data-posX="847" data-posY="352" alt="">
+    <img class="elementos" id="mal3" src="../img/pagina44/tache.png" data-posX="847" data-posY="404" alt="">
+
+    <img class="elementos" id="siguiente" src="../img/pagina44/siguiente.png" data-posX="438" data-posY="452" alt="">
+
+    <img class="elementos" id="retroBuena" src="../img/pagina44/retroBuena.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="retroMala" src="../img/pagina44/retroMala.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="reintentar" src="../img/pagina44/reintentar.png" data-posX="497" data-posY="357" alt="">
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const titulo = $('#titulo');
+        const texto = $('#texto');
+        const iniciar = $('#iniciar');
+        const base = $('#base');
+        const siguiente = $('#siguiente');
+        const retroBuena = $('#retroBuena');
+        const retroMala = $('#retroMala');
+        const reintentar = $('#reintentar');
+        const respuestas = $('.respuestas');
+        
+        const p1 = $('#p1');
+        const r1_a = $('#r1_a');
+        const r1_b = $('#r1_b');
+        const bien1 = $('#bien1');
+        const mal1 = $('#mal1');
+        
+        const p2 = $('#p2');
+        const r2_a = $('#r2_a');
+        const r2_b = $('#r2_b');
+        const bien2 = $('#bien2');
+        const mal2 = $('#mal2');
+
+        const p3 = $('#p3');
+        const r3_a = $('#r3_a');
+        const r3_b = $('#r3_b');
+        const bien3 = $('#bien3');
+        const mal3 = $('#mal3');
+
+        respuestas.css('cursor', 'pointer');
+
+        let aciertos = 0;
+        let indexPregunta = 0;
+
+        const preguntas = [p1, p2, p3];
+        const respuestasA = [r1_a, r2_a, r3_a];
+        const respuestasB = [r1_b, r2_b, r3_b];
+
+        const buenas = [bien1, bien2, bien3];
+        const malas = [mal1, mal2, mal3]
+
+        const rA = $('.rA');
+        const rB = $('.rB');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_44_1.mp3'),
+            new Audio('../audios/s_bien.mp3'),
+            new Audio('../audios/s_mal.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], activarBoton, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(titulo, 'default', 1, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function activarBoton() {  
+            parpadear(iniciar);
+        }
+
+        iniciar.click(function(){
+            locutarInstrucciones();
+        });
+
+        function locutarInstrucciones(){
+            animacionSalida(texto, 'default', 1);
+            animacionSalida(iniciar, 'default', 1);
+            animacionEntrada(base, 'default', 1, 1);
+
+            entradaPreguntas();
+        }
+
+        function entradaPreguntas() {  
+            animacionEntrada(preguntas[indexPregunta], 'default', 1, 1);
+            animacionEntrada(respuestasA[indexPregunta], 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(respuestasB[indexPregunta], 'derecha-izquierda', 1, 2);
+        }
+
+        rA.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    respuestas.css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+
+                        audio[1].play();
+                        animacionEntrada(buenas[indexPregunta], 'default', 1);
+                        aciertos++;
+                    }
+                    else{
+
+                        audio[2].play();
+                        animacionEntrada(malas[indexPregunta], 'default', 1);
+                    }
+
+                    setTimeout(()=>{
+                        parpadear(siguiente);
+                    }, 2000);
+                }
+            });
+        });
+
+        rB.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    respuestas.css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+
+                        audio[1].play();
+                        animacionEntrada(buenas[indexPregunta], 'default', 1);
+                        aciertos++;
+                    }
+                    else{
+
+                        audio[2].play();
+                        animacionEntrada(malas[indexPregunta], 'default', 1);
+                    }
+
+                    setTimeout(()=>{
+                        parpadear(siguiente);
+                    }, 2000);
+                }
+            });
+        });
+
+        siguiente.click(function(){
+
+            animacionSalida(preguntas[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasA[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasB[indexPregunta], 'default', 1, .5);
+            animacionSalida(buenas[indexPregunta], 'default', 1, .5);
+            animacionSalida(malas[indexPregunta], 'default', 1, .5);
+            animacionSalida(siguiente, 'default', 1, .5);
+
+            indexPregunta++;
+
+            if(indexPregunta < preguntas.length){
+                respuestas.css('cursor', 'pointer');
+                entradaPreguntas();
+            }
+            else{
+                animacionSalida(base, 'default', 1, .5);
+                evaluar();
+            }
+        });
+
+        function evaluar(){
+
+            if(aciertos >= 2){
+                animacionEntrada(retroBuena, 'default', 1, 1);
+                aplicacion.terminaPantalla();
+            }
+            else{
+                animacionEntrada(retroMala, 'default', 1, 1);
+                setTimeout(()=>{
+                    parpadear(reintentar);
+                }, 2000);
+            }
+        }
+
+        reintentar.click(function(){
+            aplicacion.recargarPagina();
+        });
+
+    </script>
+</body>
+</html>

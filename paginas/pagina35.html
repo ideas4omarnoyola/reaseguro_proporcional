@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 35</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    <img class="elementos" id="fondo" src="../img/pagina35/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina35/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="iniciar" src="../img/pagina35/iniciar.png" data-posX="438" data-posY="348" alt="">
+
+    <img class="elementos" id="base" src="../img/pagina35/base.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Pregunta 1 -->
+    <img class="elementos" id="p1" src="../img/pagina35/p1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r1_a" src="../img/pagina35/r1_a.png" data-posX="77" data-posY="352" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r1_b" src="../img/pagina35/r1_b.png" data-posX="77" data-posY="398" data-respuesta="m" alt="">
+    <img class="elementos" id="bien1" src="../img/pagina35/paloma.png" data-posX="847" data-posY="352" alt="">
+    <img class="elementos" id="mal1" src="../img/pagina35/tache.png" data-posX="847" data-posY="404" alt="">
+
+    <!-- Pregunta 2 -->
+    <img class="elementos" id="p2" src="../img/pagina35/p2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r2_a" src="../img/pagina35/r2_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r2_b" src="../img/pagina35/r2_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien2" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal2" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 3 -->
+    <img class="elementos" id="p3" src="../img/pagina35/p3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r3_a" src="../img/pagina35/r3_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r3_b" src="../img/pagina35/r3_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien3" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal3" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 4 -->
+    <img class="elementos" id="p4" src="../img/pagina35/p4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r4_a" src="../img/pagina35/r4_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r4_b" src="../img/pagina35/r4_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien4" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal4" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 5 -->
+    <img class="elementos" id="p5" src="../img/pagina35/p5.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r5_a" src="../img/pagina35/r5_a.png" data-posX="77" data-posY="352" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r5_b" src="../img/pagina35/r5_b.png" data-posX="77" data-posY="398" data-respuesta="m" alt="">
+    <img class="elementos" id="bien5" src="../img/pagina35/paloma.png" data-posX="847" data-posY="352" alt="">
+    <img class="elementos" id="mal5" src="../img/pagina35/tache.png" data-posX="847" data-posY="404" alt="">
+
+    <!-- Pregunta 6 -->
+    <img class="elementos" id="p6" src="../img/pagina35/p6.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r6_a" src="../img/pagina35/r6_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r6_b" src="../img/pagina35/r6_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien6" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal6" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 7 -->
+    <img class="elementos" id="p7" src="../img/pagina35/p7.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r7_a" src="../img/pagina35/r7_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r7_b" src="../img/pagina35/r7_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien7" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal7" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 8 -->
+    <img class="elementos" id="p8" src="../img/pagina35/p8.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r8_a" src="../img/pagina35/r8_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r8_b" src="../img/pagina35/r8_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien8" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal8" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 9 -->
+    <img class="elementos" id="p9" src="../img/pagina35/p9.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r9_a" src="../img/pagina35/r9_a.png" data-posX="77" data-posY="352" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r9_b" src="../img/pagina35/r9_b.png" data-posX="77" data-posY="398" data-respuesta="m" alt="">
+    <img class="elementos" id="bien9" src="../img/pagina35/paloma.png" data-posX="847" data-posY="352" alt="">
+    <img class="elementos" id="mal9" src="../img/pagina35/tache.png" data-posX="847" data-posY="404" alt="">
+
+    <!-- Pregunta 10 -->
+    <img class="elementos" id="p10" src="../img/pagina35/p10.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r10_a" src="../img/pagina35/r10_a.png" data-posX="77" data-posY="352" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r10_b" src="../img/pagina35/r10_b.png" data-posX="77" data-posY="398" data-respuesta="m" alt="">
+    <img class="elementos" id="bien10" src="../img/pagina35/paloma.png" data-posX="847" data-posY="352" alt="">
+    <img class="elementos" id="mal10" src="../img/pagina35/tache.png" data-posX="847" data-posY="404" alt="">
+
+    <!-- Pregunta 11 -->
+    <img class="elementos" id="p11" src="../img/pagina35/p11.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r11_a" src="../img/pagina35/r11_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r11_b" src="../img/pagina35/r11_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien11" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal11" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 12 -->
+    <img class="elementos" id="p12" src="../img/pagina35/p12.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r12_a" src="../img/pagina35/r12_a.png" data-posX="77" data-posY="352" data-respuesta="m" alt="">
+    <img class="elementos respuestas rB" id="r12_b" src="../img/pagina35/r12_b.png" data-posX="77" data-posY="398" data-respuesta="b" alt="">
+    <img class="elementos" id="bien12" src="../img/pagina35/paloma.png" data-posX="847" data-posY="404" alt="">
+    <img class="elementos" id="mal12" src="../img/pagina35/tache.png" data-posX="847" data-posY="352" alt="">
+
+    <!-- Pregunta 13 -->
+    <img class="elementos" id="p13" src="../img/pagina35/p13.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos respuestas rA" id="r13_a" src="../img/pagina35/r13_a.png" data-posX="77" data-posY="352" data-respuesta="b" alt="">
+    <img class="elementos respuestas rB" id="r13_b" src="../img/pagina35/r13_b.png" data-posX="77" data-posY="398" data-respuesta="m" alt="">
+    <img class="elementos" id="bien13" src="../img/pagina35/paloma.png" data-posX="847" data-posY="352" alt="">
+    <img class="elementos" id="mal13" src="../img/pagina35/tache.png" data-posX="847" data-posY="404" alt="">
+
+    <img class="elementos" id="siguiente" src="../img/pagina35/siguiente.png" data-posX="438" data-posY="452" alt="">
+
+    <img class="elementos" id="retroBuena" src="../img/pagina35/retroBuena.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="retroMala" src="../img/pagina35/retroMala.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="reintentar" src="../img/pagina35/reintentar.png" data-posX="497" data-posY="357" alt="">
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const fondo = $('#fondo');
+        const texto = $('#texto');
+        const iniciar = $('#iniciar');
+        const base = $('#base');
+        const siguiente = $('#siguiente');
+        const retroBuena = $('#retroBuena');
+        const retroMala = $('#retroMala');
+        const reintentar = $('#reintentar');
+        const respuestas = $('.respuestas');
+        
+        const p1 = $('#p1');
+        const r1_a = $('#r1_a');
+        const r1_b = $('#r1_b');
+        const bien1 = $('#bien1');
+        const mal1 = $('#mal1');
+        
+        const p2 = $('#p2');
+        const r2_a = $('#r2_a');
+        const r2_b = $('#r2_b');
+        const bien2 = $('#bien2');
+        const mal2 = $('#mal2');
+
+        const p3 = $('#p3');
+        const r3_a = $('#r3_a');
+        const r3_b = $('#r3_b');
+        const bien3 = $('#bien3');
+        const mal3 = $('#mal3');
+
+        const p4 = $('#p4');
+        const r4_a = $('#r4_a');
+        const r4_b = $('#r4_b');
+        const bien4 = $('#bien4');
+        const mal4 = $('#mal4');
+
+        const p5 = $('#p5');
+        const r5_a = $('#r5_a');
+        const r5_b = $('#r5_b');
+        const bien5 = $('#bien5');
+        const mal5 = $('#mal5');
+
+        const p6 = $('#p6');
+        const r6_a = $('#r6_a');
+        const r6_b = $('#r6_b');
+        const bien6 = $('#bien6');
+        const mal6 = $('#mal6');
+
+        const p7 = $('#p7');
+        const r7_a = $('#r7_a');
+        const r7_b = $('#r7_b');
+        const bien7 = $('#bien7');
+        const mal7 = $('#mal7');
+
+        const p8 = $('#p8');
+        const r8_a = $('#r8_a');
+        const r8_b = $('#r8_b');
+        const bien8 = $('#bien8');
+        const mal8 = $('#mal8');
+
+        const p9 = $('#p9');
+        const r9_a = $('#r9_a');
+        const r9_b = $('#r9_b');
+        const bien9 = $('#bien9');
+        const mal9 = $('#mal9');
+
+        const p10 = $('#p10');
+        const r10_a = $('#r10_a');
+        const r10_b = $('#r10_b');
+        const bien10 = $('#bien10');
+        const mal10 = $('#mal10');
+
+        const p11 = $('#p11');
+        const r11_a = $('#r11_a');
+        const r11_b = $('#r11_b');
+        const bien11 = $('#bien11');
+        const mal11 = $('#mal11');
+
+        const p12 = $('#p12');
+        const r12_a = $('#r12_a');
+        const r12_b = $('#r12_b');
+        const bien12 = $('#bien12');
+        const mal12 = $('#mal12');
+
+        const p13 = $('#p13');
+        const r13_a = $('#r13_a');
+        const r13_b = $('#r13_b');
+        const bien13 = $('#bien13');
+        const mal13 = $('#mal13');
+
+        respuestas.css('cursor', 'pointer');
+
+        let aciertos = 0;
+        let indexPregunta = 0;
+
+        const preguntas = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13];
+        const respuestasA = [r1_a, r2_a, r3_a, r4_a, r5_a, r6_a, r7_a, r8_a, r9_a, r10_a, r11_a, r12_a, r13_a];
+        const respuestasB = [r1_b, r2_b, r3_b, r4_b, r5_b, r6_b, r7_b, r8_b, r9_b, r10_b, r11_b, r12_b, r13_b];
+
+        const buenas = [bien1, bien2, bien3, bien4, bien5, bien6, bien7, bien8, bien9, bien10, bien11, bien12, bien13];
+        const malas = [mal1, mal2, mal3, mal4, mal5, mal6, mal7, mal8, mal9, mal10, mal11, mal12, mal13];
+
+        const rA = $('.rA');
+        const rB = $('.rB');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_35_1.mp3'),
+            new Audio('../audios/s_bien.mp3'),
+            new Audio('../audios/s_mal.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], activarBoton, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function activarBoton() {  
+            parpadear(iniciar);
+        }
+
+        iniciar.click(function(){
+            locutarInstrucciones();
+        });
+
+        function locutarInstrucciones(){
+            animacionSalida(texto, 'default', 1);
+            animacionSalida(iniciar, 'default', 1);
+            animacionEntrada(base, 'default', 1, 1);
+            entradaPreguntas();
+        }
+
+        function entradaPreguntas() {  
+            animacionEntrada(preguntas[indexPregunta], 'default', 1, 1);
+            animacionEntrada(respuestasA[indexPregunta], 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(respuestasB[indexPregunta], 'derecha-izquierda', 1, 2);
+        }
+
+        rA.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    respuestas.css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+
+                        audio[1].play();
+                        animacionEntrada(buenas[indexPregunta], 'default', 1);
+                        aciertos++;
+                    }
+                    else{
+
+                        audio[2].play();
+                        animacionEntrada(malas[indexPregunta], 'default', 1);
+                    }
+
+                    setTimeout(()=>{
+                        parpadear(siguiente);
+                    }, 2000);
+                }
+            });
+        });
+
+        rB.each(function(){
+            $(this).click(function () {  
+                if($(this).css('cursor') == 'pointer'){
+                    respuestas.css('cursor', 'default');
+                    const respuesta = $(this).data('respuesta');
+                
+                    if(respuesta == 'b'){
+
+                        audio[1].play();
+                        animacionEntrada(buenas[indexPregunta], 'default', 1);
+                        aciertos++;
+                    }
+                    else{
+
+                        audio[2].play();
+                        animacionEntrada(malas[indexPregunta], 'default', 1);
+                    }
+
+                    setTimeout(()=>{
+                        parpadear(siguiente);
+                    }, 2000);
+                }
+            });
+        });
+
+        siguiente.click(function(){
+
+            animacionSalida(preguntas[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasA[indexPregunta], 'default', 1, .5);
+            animacionSalida(respuestasB[indexPregunta], 'default', 1, .5);
+            animacionSalida(buenas[indexPregunta], 'default', 1, .5);
+            animacionSalida(malas[indexPregunta], 'default', 1, .5);
+            animacionSalida(siguiente, 'default', 1, .5);
+
+            indexPregunta++;
+
+            if(indexPregunta < preguntas.length){
+                respuestas.css('cursor', 'pointer');
+                entradaPreguntas();
+            }
+            else{
+                animacionSalida(base, 'default', 1, .5);
+                evaluar();
+            }
+        });
+
+        function evaluar(){
+
+            const calificacion = ((aciertos * 100) / preguntas.length);
+
+            if(calificacion >= 80){
+                animacionEntrada(retroBuena, 'default', 1, 1);
+                aplicacion.terminaPantalla();
+            }
+            else{
+                animacionEntrada(retroMala, 'default', 1, 1);
+                setTimeout(()=>{
+                    parpadear(reintentar);
+                }, 2000);
+            }
+        }
+
+        reintentar.click(function(){
+            aplicacion.recargarPagina();
+        });
+
+    </script>
+</body>
+</html>

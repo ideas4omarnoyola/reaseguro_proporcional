@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 48</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina48/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina48/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnIniciar" src="../img/pagina48/btnIniciar.png" data-posX="468" data-posY="268" alt="">
+    <img class="elementos" id="base" src="../img/pagina48/base.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="p1" src="../img/pagina48/p1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="p2" src="../img/pagina48/p2.png" data-posX="0" data-posY="0" alt="">
+
+    <!-------------------------------- drops ----------------------------->
+    <img class="elementos drops" id="drop3" data-lugar="3" src="../img/pagina48/drop1.png" data-posX="388" data-posY="104" alt="">
+    <img class="elementos drops" id="drop1" data-lugar="1" src="../img/pagina48/drop2.png" data-posX="388" data-posY="186" alt="">
+    <img class="elementos drops" id="drop5" data-lugar="5" src="../img/pagina48/drop3.png" data-posX="388" data-posY="264" alt="">
+    <img class="elementos drops" id="drop2" data-lugar="2" src="../img/pagina48/drop4.png" data-posX="388" data-posY="342" alt="">
+    <img class="elementos drops" id="drop4" data-lugar="4" src="../img/pagina48/drop5.png" data-posX="388" data-posY="450" alt="">
+
+    <img class="elementos drops" id="drop6" data-lugar="6" src="../img/pagina48/drop6.png" data-posX="388" data-posY="104" alt="">
+    <img class="elementos drops" id="drop8" data-lugar="8" src="../img/pagina48/drop7.png" data-posX="388" data-posY="186" alt="">
+    <img class="elementos drops" id="drop10" data-lugar="10" src="../img/pagina48/drop8.png" data-posX="388" data-posY="264" alt="">
+    <img class="elementos drops" id="drop7" data-lugar="7" src="../img/pagina48/drop9.png" data-posX="388" data-posY="342" alt="">
+    <img class="elementos drops" id="drop9" data-lugar="9" src="../img/pagina48/drop10.png" data-posX="388" data-posY="450" alt="">
+
+    <!-------------------------------- drags ----------------------------->
+    <img class="elementos drags" id="drag1" data-lugar="1" src="../img/pagina48/drag1.png" data-posX="645" data-posY="210" alt="">
+    <img class="elementos drags" id="drag2" data-lugar="2" src="../img/pagina48/drag2.png" data-posX="827" data-posY="210" alt="">
+    <img class="elementos drags" id="drag3" data-lugar="3" src="../img/pagina48/drag3.png" data-posX="645" data-posY="286" alt="">
+    <img class="elementos drags" id="drag4" data-lugar="4" src="../img/pagina48/drag4.png" data-posX="827" data-posY="286" alt="">
+    <img class="elementos drags" id="drag5" data-lugar="5" src="../img/pagina48/drag5.png" data-posX="645" data-posY="363" alt="">
+    
+    <img class="elementos drags" id="drag6" data-lugar="6" src="../img/pagina48/drag6.png" data-posX="645" data-posY="210" alt="">
+    <img class="elementos drags" id="drag7" data-lugar="7" src="../img/pagina48/drag7.png" data-posX="827" data-posY="210" alt="">
+    <img class="elementos drags" id="drag8" data-lugar="8" src="../img/pagina48/drag8.png" data-posX="645" data-posY="286" alt="">
+    <img class="elementos drags" id="drag9" data-lugar="9" src="../img/pagina48/drag9.png" data-posX="827" data-posY="286" alt="">
+    <img class="elementos drags" id="drag10" data-lugar="10" src="../img/pagina48/drag10.png" data-posX="645" data-posY="363" alt="">
+
+    <img class="elementos" id="btnEvaluar" src="../img/pagina48/btnEvaluar.png" data-posX="713" data-posY="455" alt="">
+    <img class="elementos" id="paloma" src="../img/pagina48/paloma.png" data-posX="800" data-posY="278" alt="">
+    <img class="elementos" id="tache" src="../img/pagina48/tache.png" data-posX="800" data-posY="278" alt="">
+    <img class="elementos" id="retroBuena" src="../img/pagina48/retroBuena.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="retroMala" src="../img/pagina48/retroMala.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnReintentar" src="../img/pagina48/btnReintentar.png" data-posX="446" data-posY="372" alt="">
+    <img class="elementos" id="btnContinuar" src="../img/pagina48/btnContinuar.png" data-posX="533" data-posY="419" alt="">
+
+    <div class="elementos" id="promedio"></div>
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const texto = $('#texto');
+        const btnIniciar = $('#btnIniciar');
+        const base = $('#base');
+        const p1 = $('#p1');
+        const p2 = $('#p2');
+        const drags = $('.drags');
+        const drops = $('.drops');
+        const btnEvaluar = $('#btnEvaluar');
+        const btnReintentar = $('#btnReintentar');
+        const btnContinuar = $('#btnContinuar');
+        const retroBuena = $('#retroBuena');
+        const retroMala = $('#retroMala');
+        const paloma = $('#paloma');
+        const tache = $('#tache');
+        const promedio = $('#promedio');
+
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+        const drag3 = $('#drag3');
+        const drag4 = $('#drag4');
+        const drag5 = $('#drag5');
+        const drag6 = $('#drag6');
+        const drag7 = $('#drag7');
+        const drag8 = $('#drag8');
+        const drag9 = $('#drag9');
+        const drag10 = $('#drag10');
+
+        const drop1 = $('#drop1');
+        const drop2 = $('#drop2');
+        const drop3 = $('#drop3');
+        const drop4 = $('#drop4');
+        const drop5 = $('#drop5');
+        const drop6 = $('#drop6');
+        const drop7 = $('#drop7');
+        const drop8 = $('#drop8');
+        const drop9 = $('#drop9');
+        const drop10 = $('#drop10');
+
+        let dragSelect;
+        let dropSelect;
+        let colocados = 0;
+        let aciertos = 0;
+
+        drags.css('cursor', 'grab');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_48_1.mp3'),
+            new Audio('../audios/Proporcional_48_3.mp3'),
+            new Audio('../audios/s_bien.mp3'),
+            new Audio('../audios/s_mal.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], activarBoton, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function activarBoton(){
+            parpadear(btnIniciar);
+        }
+
+        btnIniciar.click(function(){
+            animacionSalida(texto, 'default', 1);
+            animacionSalida(btnIniciar, 'default', 1);
+            animacionEntrada(base, 'default', 1, 1);
+            entradaParte1();
+
+            setTimeout(()=>{
+                completarOraciones();
+            }, 3000);
+        });
+
+        function entradaParte1(){
+            animacionEntrada(p1, 'default', 1, 1);
+            animacionEntrada(drop1, 'default', 1, 1);
+            animacionEntrada(drop2, 'default', 1, 1);
+            animacionEntrada(drop3, 'default', 1, 1);
+            animacionEntrada(drop4, 'default', 1, 1);
+            animacionEntrada(drop5, 'default', 1, 1);
+            animacionEntrada(drag1, 'derecha-izquierda', 1, 1);
+            animacionEntrada(drag2, 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(drag3, 'derecha-izquierda', 1, 2);
+            animacionEntrada(drag4, 'derecha-izquierda', 1, 2.5);
+            animacionEntrada(drag5, 'derecha-izquierda', 1, 3);
+        }
+
+        function completarOraciones(){
+
+            drags.draggable({
+                revert: true,
+                start: function( event, ui ) {
+                    dragSelect = $(this).data('lugar');
+                    $(this).css('cursor', 'grabbing');
+                },             
+                stop: function( event, ui ) {
+                    $(this).css('cursor', 'grab');
+                }             
+            });
+
+            drops.droppable({
+                accept: drags,
+                tolerance: "intersect",
+                drop: function( event, ui ) {
+                    dropSelect = $(this).data('lugar');
+                    soltar();
+                }
+            });
+        }
+
+        function soltar(){
+            // Selecionar los elementos correspondiente
+            const dragActivo = $(`#drag${dragSelect}`);
+            const dropActivo = $(`#drop${dropSelect}`);
+
+            //Sacar el top y el left del drop 
+            const dropTop = dropActivo.css('top');
+            const dropLeft = dropActivo.css('left');
+
+            //Posicionar el drag en el drop
+            dragActivo.css({
+                'top': dropTop,
+                'left': dropLeft
+            });
+
+            //Deshabilitar el regreso
+            dragActivo.draggable({
+                revert: false,
+            });
+
+
+            //Comparar si es el lugar correspondiente
+            if(dragSelect == dropSelect){
+                //Evaluar si el lugar tiene un elemento colocado
+                if(!dragActivo.hasClass('colocado')){
+                    dragActivo.addClass('colocado');
+                    colocados++;
+                }
+                
+                if(!dragActivo.hasClass('correcto')){
+                    dragActivo.addClass('correcto');
+                    aciertos++;
+                }
+                                
+                // console.log(`Colocados: ${colocados}`);
+                // console.log(`Aciertos: ${aciertos}`);
+            }
+            else{
+                //Evaluar si el lugar tiene un elemento colocado
+                if(!dragActivo.hasClass('colocado')){
+                    dragActivo.addClass('colocado');
+                    colocados++;
+                    // console.log(`Colocados: ${colocados}`);
+                }
+                else if(dragActivo.hasClass('correcto')){
+                    dragActivo.removeClass('correcto');
+                    aciertos--;
+                    // console.log(`Aciertos: ${aciertos}`);
+                }
+            }
+
+            if(colocados == 5){
+                
+                setTimeout(()=>{
+                    salidaParte1();
+                    entradaParte2();
+                }, 2000);
+            }
+
+            if(colocados == 10){
+                parpadear(btnEvaluar);
+            }
+        }
+
+        function salidaParte1() {  
+
+            animacionSalida(p1, 'default', 1);
+            animacionSalida(drop1, 'default', 1);
+            animacionSalida(drop2, 'default', 1);
+            animacionSalida(drop3, 'default', 1);
+            animacionSalida(drop4, 'default', 1);
+            animacionSalida(drop5, 'default', 1);
+            animacionSalida(drag1, 'default', 1);
+            animacionSalida(drag2, 'default', 1);
+            animacionSalida(drag3, 'default', 1);
+            animacionSalida(drag4, 'default', 1);
+            animacionSalida(drag5, 'default', 1);
+        }
+
+        function entradaParte2(){
+            animacionEntrada(p2, 'default', 1, 1);
+            animacionEntrada(drop6, 'default', 1, 1);
+            animacionEntrada(drop7, 'default', 1, 1);
+            animacionEntrada(drop8, 'default', 1, 1);
+            animacionEntrada(drop9, 'default', 1, 1);
+            animacionEntrada(drop10, 'default', 1, 1);
+            animacionEntrada(drag6, 'derecha-izquierda', 1, 1);
+            animacionEntrada(drag7, 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(drag8, 'derecha-izquierda', 1, 2);
+            animacionEntrada(drag9, 'derecha-izquierda', 1, 2.5);
+            animacionEntrada(drag10, 'derecha-izquierda', 1, 3);
+        }
+
+        function salidaParte2(){
+
+            animacionSalida(p2, 'default', 1);
+            animacionSalida(drop6, 'default', 1);
+            animacionSalida(drop7, 'default', 1);
+            animacionSalida(drop8, 'default', 1);
+            animacionSalida(drop9, 'default', 1);
+            animacionSalida(drop10, 'default', 1);
+            animacionSalida(drag6, 'default', 1);
+            animacionSalida(drag7, 'default', 1);
+            animacionSalida(drag8, 'default', 1);
+            animacionSalida(drag9, 'default', 1);
+            animacionSalida(drag10, 'default', 1);
+        }
+
+        btnEvaluar.click(function(){
+
+            animacionSalida(btnEvaluar, 'default', 1);
+
+            if(aciertos >= 8){
+                aplicacion.reproducirAudio(audio[2], evaluar, 1);
+                animacionEntrada(paloma, 'default', 1);
+            }
+            else{
+                aplicacion.reproducirAudio(audio[3], evaluar, 1);
+                animacionEntrada(tache, 'default', 1);
+            }
+        });
+
+        function evaluar(){
+
+            const calificacion = aciertos * 10;
+
+            if(calificacion >= 80){
+                aplicacion.guardarCalificacion(calificacion);
+                retroPositiva(calificacion);
+            }
+            else{
+                aplicacion.siguienteIntento();
+                retroNegativa(calificacion);
+            }
+        }
+
+        function retroPositiva(calificacion){
+            
+            promedio.html(calificacion);
+            promedio.css({
+                'fontSize': '32px',
+                'top': '265px',
+                'left': '595px'
+            });
+
+            salidaParte2();
+            animacionEntrada(retroBuena, 'default', 1, 1);
+            animacionEntrada(promedio, 'default', 1, 1);
+            
+            setTimeout(()=>{
+                parpadear(btnContinuar);
+            }, 2000);
+        }
+
+        function retroNegativa(calificacion){
+
+            aplicacion.reproducirAudio(audio[1], activarReintentar, 1);
+            salidaParte2();
+            animacionEntrada(retroMala, 'default', 1, 1);
+            animacionEntrada(promedio, 'default', 1, 1);
+        }
+
+        function activarReintentar(){
+            
+            parpadear(btnReintentar);
+        }
+
+        btnReintentar.click(function(){
+            aplicacion.recargarPagina();
+        });
+
+        btnContinuar.click(function(){
+            aplicacion.siguientePagina();
+        });
+
+
+    </script>
+</body>
+</html>

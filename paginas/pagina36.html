@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 36</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina36/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d1" src="../img/pagina36/d1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d2" src="../img/pagina36/d2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d3" src="../img/pagina36/d3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d4" src="../img/pagina36/d4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="nota" src="../img/pagina36/nota.png" data-posX="926" data-posY="271" alt="">
+    <img class="elementos" id="pop" src="../img/pagina36/pop.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cerrar" src="../img/pagina36/cerrar.png" data-posX="769" data-posY="191" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const d1 = $('#d1');
+        const d2 = $('#d2');
+        const d3 = $('#d3');
+        const d4 = $('#d4');
+        const d5 = $('#d5');
+        const pop = $('#pop');
+        const nota = $('#nota');
+        const cerrar = $('#cerrar');
+
+        const informacion = [d1, d2, d3, d4];
+
+        let indexInfo = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_36_1.mp3'),
+            new Audio('../audios/Proporcional_36_2.mp3'),
+            new Audio('../audios/Proporcional_36_3.mp3'),
+            new Audio('../audios/Proporcional_36_4.mp3'),
+            new Audio('../audios/Proporcional_36_5.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo, 'default', 1);
+            narrarDialogos();
+        }
+
+        function narrarDialogos(){
+            aplicacion.reproducirAudio(audio[indexInfo], siguiente, 1);
+            animacionEntrada(informacion[indexInfo], 'default', 1);
+        }
+
+        function siguiente(){
+
+            indexInfo++;
+
+            if(indexInfo < informacion.length){
+                animacionSalida(informacion[indexInfo - 1], 'default', 1);
+                narrarDialogos();
+            }
+            else{
+                parpadear(nota);
+            }
+        }
+
+        nota.click(function(){
+            aplicacion.reproducirAudio(audio[4], cerrarPop, 1);
+            dejarParpadear(nota, true);
+            animacionEntrada(pop, 'default', 1, 1);
+        });
+
+        function cerrarPop() {  
+            parpadear(cerrar);
+        }
+
+        cerrar.click(function(){
+            dejarParpadear(cerrar);
+            animacionSalida(pop, 'default', 1, 1);
+            animacionSalida(cerrar, 'default', 1, 1);  
+            aplicacion.terminaPantalla();
+        });
+
+
+    </script>
+</body>
+</html>

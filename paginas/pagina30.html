@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 30</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina30/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="boton" src="../img/pagina30/boton.png" data-posX="926" data-posY="271" alt="">
+    <img class="elementos" id="pop1" src="../img/pagina30/pop1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cerrar" src="../img/pagina30/cerrar.png" data-posX="770" data-posY="191" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const pop1 = $('#pop1');
+        const boton = $('#boton');
+        const cerrar = $('#cerrar');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_30_1.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], botonera, 1);
+            animacionEntrada(texto, 'izquierda-derecha', 1, 1);
+        }
+
+        function botonera(){
+            parpadear(boton);
+        }
+
+        boton.click(function(){
+            dejarParpadear(boton, true);
+            animacionEntrada(pop1, 'default', 1, 1);
+            animacionEntrada(cerrar, 'default', 1, 2);
+            cerrar.css('cursor', 'pointer');
+        });
+
+        cerrar.click(function(){
+            dejarParpadear(cerrar);
+            animacionSalida(pop1, 'default', 1, 1);
+            animacionSalida(cerrar, 'default', 1, 1);  
+            aplicacion.terminaPantalla();
+        });
+
+    </script>
+</body>
+</html>

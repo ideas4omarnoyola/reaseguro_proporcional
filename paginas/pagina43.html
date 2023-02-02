@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 43</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina43/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info" src="../img/pagina43/info.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d1" src="../img/pagina43/d1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d2" src="../img/pagina43/d2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d3" src="../img/pagina43/d3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d4" src="../img/pagina43/d4.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const info = $('#info');
+        const d1 = $('#d1');
+        const d2 = $('#d2');
+        const d3 = $('#d3');
+        const d4 = $('#d4');
+
+        const informacion1 = [d1];
+        const informacion2 = [d2, d3, d4];
+
+        let indexInfo1 = 0;
+        let indexInfo2 = 0;
+
+        // Audios------------------------------------------------------
+        const audio1 = [
+            new Audio('../audios/Proporcional_43_1.mp3')
+        ]
+        
+        const audio2 = [
+            new Audio('../audios/Proporcional_43_2.mp3'),
+            new Audio('../audios/Proporcional_43_3.mp3'),
+            new Audio('../audios/Proporcional_43_4.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(info, 'default', 1);
+            narrarDialogos1();
+        }
+
+        function narrarDialogos1(){
+            aplicacion.reproducirAudio(audio1[indexInfo1], siguiente1, 1);
+            animacionEntrada(informacion1[indexInfo1], 'derecha-izquierda', 1);
+        }
+
+        function siguiente1(){
+
+            indexInfo1++;
+
+            if(indexInfo1 < informacion1.length){
+                narrarDialogos1();
+            }
+            else{
+                animacionSalida(d1, 'default', 1);
+                animacionSalida(info, 'default', 1);
+                narrarDialogos2();
+            }
+        }
+
+        function narrarDialogos2(){
+            aplicacion.reproducirAudio(audio2[indexInfo2], siguiente2, 1);
+            animacionEntrada(informacion2[indexInfo2], 'default', 1);
+        }
+
+        function siguiente2(){
+
+            indexInfo2++;
+
+            if(indexInfo2 < informacion2.length){
+                narrarDialogos2();
+            }
+            else{
+                aplicacion.terminaPantalla();                
+            }
+        }
+
+    </script>
+</body>
+</html>

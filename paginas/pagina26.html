@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 26</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina26/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d1" src="../img/pagina26/d1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d2" src="../img/pagina26/d2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d3" src="../img/pagina26/d3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d4" src="../img/pagina26/d4.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const d1 = $('#d1');
+        const d2 = $('#d2');
+        const d3 = $('#d3');
+        const d4 = $('#d4');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_26_1.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], entradaDialogos, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+        }
+
+        function entradaDialogos(){
+            animacionEntrada(d1, 'derecha-izquierda', 1, 1);
+            animacionEntrada(d2, 'derecha-izquierda', 1, 2);
+            animacionEntrada(d3, 'derecha-izquierda', 1, 3);
+            animacionEntrada(d4, 'derecha-izquierda', 1, 4);
+
+            setTimeout(() => {
+                aplicacion.terminaPantalla();
+            }, 5000);
+        }
+
+
+    </script>
+</body>
+</html>
