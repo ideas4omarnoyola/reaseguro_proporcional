@@ -56,6 +56,8 @@
         const audio = [
             new Audio('../audios/Proporcional_7_1.mp3'),
             new Audio('../audios/Proporcional_7_2.mp3'),
+            new Audio('../audios/Proporcional_7_3.mp3'),
+            new Audio('../audios/Proporcional_7_4.mp3'),
         ]
 
         // Al cargarse la página
@@ -83,34 +85,33 @@
             parpadear(btn3);
         }
 
+        function salirPop1(){
+            animacionSalida(popup1, 'default', 1);
+            clickBtn2();
+        }
+        function salirPop2(){
+            animacionSalida(popup2, 'default', 1);
+            clickBtn3();
+        }
+
         btn1.click(function(){
             if(btn1.css('cursor') == 'pointer'){
                 dejarParpadear(btn1);
+                aplicacion.reproducirAudio(audio[1], salirPop1, 1);
                 animacionEntrada(popup1, 'default', 1);
-            }
-        });
-        popup1.click(function(){
-            if(popup1.css('cursor') == 'pointer'){
-                animacionSalida(popup1, 'default', 1);
-                clickBtn2();
             }
         });
         btn2.click(function(){
             if(btn2.css('cursor') == 'pointer'){
                 dejarParpadear(btn2);
+                aplicacion.reproducirAudio(audio[2], salirPop2, 1);
                 animacionEntrada(popup2, 'default', 1);
-            }
-        });
-        popup2.click(function(){
-            if(popup2.css('cursor') == 'pointer'){
-                animacionSalida(popup2, 'default', 1);
-                clickBtn3();
             }
         });
         btn3.click(function(){
             if(btn3.css('cursor') == 'pointer'){
                 dejarParpadear(btn3);
-                aplicacion.reproducirAudio(audio[1], salirNota, 1);
+                aplicacion.reproducirAudio(audio[3], salirNota, 1);
                 animacionEntrada(popup3, 'default', 1);
             }
         });
