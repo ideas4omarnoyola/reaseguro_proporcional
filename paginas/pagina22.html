@@ -23,6 +23,8 @@
 <body class="pagina">
     <img class="elementos" id="fondo" src="../img/pagina22/fondo.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="señal" src="../img/pagina22/señal.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo1" src="../img/pagina22/dialogo1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="dialogo2" src="../img/pagina22/dialogo2.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="cuadro" src="../img/pagina22/cuadro.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="boton" src="../img/pagina22/boton.png" data-posX="926" data-posY="416" alt="">
     <img class="elementos" id="popup" src="../img/pagina22/popup.png" data-posX="0" data-posY="0" alt="">
@@ -39,6 +41,8 @@
         const boton = $('#boton');
         const cuadro = $('#cuadro');
         const popup = $('#popup'); 
+        const dialogo1 = $('#dialogo1'); 
+        const dialogo2 = $('#dialogo2'); 
 
 
         // Audios------------------------------------------------------
@@ -55,14 +59,17 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], locutaCuadro, 1);
+            aplicacion.reproducirAudio(audio[0], locutaDialogo2, 1);
             animacionEntrada(fondo, 'default', 1);
+            animacionEntrada(dialogo1, 'default', 1);
             animacionEntrada(señal, 'abajo-arriba', 1, 1);
         }
 
-        function locutaCuadro(){
+        function locutaDialogo2(){
             aplicacion.reproducirAudio(audio[1], clickNota, 1);
-            animacionEntrada(cuadro, 'izquierda-derecha', 1);
+            animacionSalida(dialogo1, 'default', 1);
+            animacionEntrada(dialogo2, 'izquierda-derecha', 1, 1);
+            animacionEntrada(cuadro, 'izquierda-derecha', 1, 1.5);
         }
 
         function clickNota(){
