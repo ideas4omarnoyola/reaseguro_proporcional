@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 42</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina42/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto" src="../img/pagina42/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto1" src="../img/pagina42/texto1.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="nota" src="../img/pagina42/nota.png" data-posX="926" data-posY="271" alt="">
+    <img class="elementos" id="pop" src="../img/pagina42/pop.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="cerrar" src="../img/pagina42/cerrar.png" data-posX="770" data-posY="191" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const texto = $('#texto');
+        const texto1 = $('#texto1');
+        const pop = $('#pop');
+        const nota = $('#nota');
+        const cerrar = $('#cerrar');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_42_1.mp3'),
+            new Audio('../audios/Proporcional_42_2.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutarTexto, 1);
+            animacionEntrada(fondo, 'derecha-izquierda', 1, 1);
+            animacionEntrada(texto, 'izquierda-derecha', 1, 1);
+        }
+
+        function locutarTexto(){
+            aplicacion.reproducirAudio(audio[1], activarNota, 1);
+            animacionEntrada(texto1, 'derecha-izquierda', 1, 1);
+        }
+
+        function activarNota(){
+            parpadear(nota);
+        }
+
+        nota.click(function(){
+            dejarParpadear(nota, true);
+            animacionEntrada(pop, 'default', 1, 1);
+            animacionEntrada(cerrar, 'default', 1, 2);
+            cerrar.css('cursor', 'pointer');
+        });
+
+        cerrar.click(function(){
+            dejarParpadear(cerrar);
+            animacionSalida(pop, 'default', 1, 1);
+            animacionSalida(cerrar, 'default', 1, 1);  
+            aplicacion.terminaPantalla();
+        });
+
+
+    </script>
+</body>
+</html>

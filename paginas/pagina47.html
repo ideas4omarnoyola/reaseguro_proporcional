@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 47</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina47/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d1" src="../img/pagina47/d1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d2" src="../img/pagina47/d2.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const info = $('#info');
+        const d1 = $('#d1');
+        const d2 = $('#d2');
+
+        const informacion1 = [d1, d2];
+
+        let indexInfo1 = 0;
+
+        // Audios------------------------------------------------------
+        const audio1 = [
+            new Audio('../audios/Proporcional_47_1.mp3'),
+            new Audio('../audios/Proporcional_47_2.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(texto, 'default', 1);
+            narrarDialogos1();
+        }
+
+        function narrarDialogos1(){
+            aplicacion.reproducirAudio(audio1[indexInfo1], siguiente1, 1);
+            animacionEntrada(informacion1[indexInfo1], 'derecha-izquierda', 1);
+        }
+
+        function siguiente1(){
+
+            indexInfo1++;
+
+            if(indexInfo1 < informacion1.length){
+                animacionSalida(informacion1[indexInfo1 - 1], 'default', 1);
+                narrarDialogos1();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>

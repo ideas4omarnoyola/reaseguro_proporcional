@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 40</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina40/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info1" src="../img/pagina40/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2" src="../img/pagina40/info2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info3" src="../img/pagina40/info3.png" data-posX="0" data-posY="0" alt="">
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const titulo = $('#titulo');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_40_1.mp3'),
+            new Audio('../audios/Proporcional_40_2.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locutar1, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+        }
+
+        function locutar1(){
+            aplicacion.reproducirAudio(audio[1], activarBoton, 1);
+            animacionEntrada(info1, 'default', 1);
+            animacionEntrada(info2, 'default', 1, 13);
+            animacionEntrada(info3, 'default', 1, 21);
+        }
+
+        function activarBoton(){
+            aplicacion.terminaPantalla();
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 34</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+
+    <img class="elementos" id="titulo" src="../img/pagina34/titulo.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="fondo" src="../img/pagina34/fondo.png" data-posX="0" data-posY="0"/> 
+    <img class="elementos" id="d1" src="../img/pagina34/d1.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="d2" src="../img/pagina34/d2.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="d3" src="../img/pagina34/d3.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="d4" src="../img/pagina34/d4.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="siguiente" src="../img/pagina34/siguiente.png" data-posX="720" data-posY="295"/>
+    <img class="elementos" id="nota" src="../img/pagina34/nota.png" data-posX="926" data-posY="271"/>
+    <img class="elementos" id="pop" src="../img/pagina34/pop.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="cerrar" src="../img/pagina34/cerrar.png" data-posX="769" data-posY="191"/>
+
+    
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+        const titulo = $('#titulo');
+        const fondo = $('#fondo');
+        const d1 = $('#d1');
+        const d2 = $('#d2');
+        const d3 = $('#d3');
+        const d4 = $('#d4');
+        const siguiente = $('#siguiente');
+        const nota = $('#nota');
+        const pop = $('#pop');
+        const cerrar = $('#cerrar');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/Proporcional_34_1.mp3'),
+            new Audio('../audios/Proporcional_34_2.mp3'),
+            new Audio('../audios/Proporcional_34_3.mp3'),
+            new Audio('../audios/Proporcional_34_4.mp3'),
+            new Audio('../audios/Proporcional_34_5.mp3'),
+            new Audio('../audios/Proporcional_34_6.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], locurarD2, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+            animacionEntrada(titulo, 'default', 1, 1);
+            animacionEntrada(d1, 'default', 1, 1);
+        }
+
+        function locurarD2(){
+            aplicacion.reproducirAudio(audio[1], salidaDialogos, 1);
+            animacionEntrada(d2, 'default', 1, 1);
+        }
+
+        function salidaDialogos() {
+            parpadear(siguiente);
+        }
+
+        siguiente.click(function(){
+            animacionSalida(d1, 'default', 1);
+            animacionSalida(d2, 'default', 1);
+            animacionSalida(siguiente, 'default', 1);
+
+            aplicacion.reproducirAudio(audio[2], locurarD4, 1);
+            animacionEntrada(d3, 'default', 1, 1);
+        });
+
+        function locurarD4(){
+            aplicacion.reproducirAudio(audio[3], locurarD5, 1);
+        }
+
+        function locurarD5(){
+            aplicacion.reproducirAudio(audio[4], activarNota, 1);
+            animacionEntrada(d4, 'default', 1, 1);
+        }
+
+        function activarNota() {  
+            parpadear(nota);
+        }
+
+        nota.click(function(){
+            aplicacion.reproducirAudio(audio[5], cerrarPop, 1);
+            dejarParpadear(nota, true);
+            animacionEntrada(pop, 'default', 1, 1);
+        });
+
+        function cerrarPop() {  
+            parpadear(cerrar);
+        }
+
+        cerrar.click(function(){
+            dejarParpadear(cerrar);
+            animacionSalida(pop, 'default', 1, 1);
+            animacionSalida(cerrar, 'default', 1, 1);  
+            aplicacion.terminaPantalla();
+        });
+
+    </script>
+</body>
+</html>
