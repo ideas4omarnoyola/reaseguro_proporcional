@@ -26,6 +26,7 @@
     <img class="elementos" id="d2" src="../img/pagina36/d2.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="d3" src="../img/pagina36/d3.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="d4" src="../img/pagina36/d4.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="siguiente" src="../img/pagina36/siguiente.png" data-posX="400" data-posY="400" alt="">
     <img class="elementos" id="nota" src="../img/pagina36/nota.png" data-posX="926" data-posY="271" alt="">
     <img class="elementos" id="pop" src="../img/pagina36/pop.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="cerrar" src="../img/pagina36/cerrar.png" data-posX="769" data-posY="191" alt="">
@@ -41,7 +42,7 @@
         const d2 = $('#d2');
         const d3 = $('#d3');
         const d4 = $('#d4');
-        const d5 = $('#d5');
+        const siguiente = $('#siguiente');
         const pop = $('#pop');
         const nota = $('#nota');
         const cerrar = $('#cerrar');
@@ -71,22 +72,32 @@
         }
 
         function narrarDialogos(){
-            aplicacion.reproducirAudio(audio[indexInfo], siguiente, 1);
+            aplicacion.reproducirAudio(audio[indexInfo], siguienteD, 1);
             animacionEntrada(informacion[indexInfo], 'default', 1);
         }
 
-        function siguiente(){
+        function parpadearSiguiente(){
+            
+        }
+
+        function siguienteD(){
 
             indexInfo++;
 
             if(indexInfo < informacion.length){
-                animacionSalida(informacion[indexInfo - 1], 'default', 1);
-                narrarDialogos();
+                parpadear(siguiente);
+                
             }
             else{
                 parpadear(nota);
             }
         }
+
+        siguiente.click(function(){
+            animacionSalida(informacion[indexInfo - 1], 'default', 1);
+            animacionSalida(siguiente, 'default', 1);
+            narrarDialogos();
+        });
 
         nota.click(function(){
             aplicacion.reproducirAudio(audio[4], cerrarPop, 1);

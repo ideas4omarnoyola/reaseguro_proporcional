@@ -121,6 +121,7 @@
         // Audios------------------------------------------------------
         const audio = [
             new Audio('../audios/Proporcional_48_1.mp3'),
+            new Audio('../audios/Proporcional_48_2.mp3'),
             new Audio('../audios/Proporcional_48_3.mp3'),
             new Audio('../audios/s_bien.mp3'),
             new Audio('../audios/s_mal.mp3'),
@@ -304,11 +305,11 @@
             animacionSalida(btnEvaluar, 'default', 1);
 
             if(aciertos >= 8){
-                aplicacion.reproducirAudio(audio[2], evaluar, 1);
+                aplicacion.reproducirAudio(audio[3], evaluar, 1);
                 animacionEntrada(paloma, 'default', 1);
             }
             else{
-                aplicacion.reproducirAudio(audio[3], evaluar, 1);
+                aplicacion.reproducirAudio(audio[4], evaluar, 1);
                 animacionEntrada(tache, 'default', 1);
             }
         });
@@ -339,15 +340,17 @@
             salidaParte2();
             animacionEntrada(retroBuena, 'default', 1, 1);
             animacionEntrada(promedio, 'default', 1, 1);
-            
-            setTimeout(()=>{
-                parpadear(btnContinuar);
-            }, 2000);
+
+            aplicacion.reproducirAudio(audio[1], activarBotonSig, 1);
+        }
+
+        function activarBotonSig() {  
+            parpadear(btnContinuar);
         }
 
         function retroNegativa(calificacion){
 
-            aplicacion.reproducirAudio(audio[1], activarReintentar, 1);
+            aplicacion.reproducirAudio(audio[2], activarReintentar, 1);
             salidaParte2();
             animacionEntrada(retroMala, 'default', 1, 1);
             animacionEntrada(promedio, 'default', 1, 1);
