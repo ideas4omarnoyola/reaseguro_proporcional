@@ -33,6 +33,8 @@
     <img class="elementos" id="adelante" src="../img/pagina24/adelante.png" data-posX="961" data-posY="318"/>
 
     <img class="elementos" id="boton" src="../img/pagina24/boton.png" data-posX="858" data-posY="242" alt="">
+    <img class="elementos" id="nota" src="../img/pagina24/boton.png" data-posX="920" data-posY="96" alt="">
+    <img class="elementos" id="popup1" src="../img/pagina24/popup1.png" data-posX="0" data-posY="0" alt="">
     <img class="elementos" id="popup" src="../img/pagina24/popup.png" data-posX="0" data-posY="0" alt="">
 
 
@@ -49,12 +51,15 @@
         const cuadro2 = $('#cuadro2');
         const cuadro3 = $('#cuadro3');
         const boton = $('#boton');
+        const nota = $('#nota');
         const popup = $('#popup'); 
+        const popup1 = $('#popup1'); 
 
         const atras = $('#atras');
         const adelante = $('#adelante');
 
         atras.css('cursor', 'pointer');
+        popup1.css('cursor', 'pointer');
 
         const slides = [cuadro1, cuadro2, cuadro3];
         let noSlide = 0
@@ -89,12 +94,18 @@
         }
 
         function carrusel(pantalla){
-            aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
-            animacionEntrada(slides[pantalla], 'default', 1);
+            if(pantalla == 1){
+                aplicacion.reproducirAudio(audiosSlides[pantalla], clickNota1, 1);
+                animacionEntrada(slides[pantalla], 'default', 1);
+            } else{
+                aplicacion.reproducirAudio(audiosSlides[pantalla], botonAdelante, 1);
+                animacionEntrada(slides[pantalla], 'default', 1);
+            }
 
             if(pantalla > 0 & atras.css('display') == 'none'){
                 animacionEntrada(atras, 'default', 1, 1);
             }
+
         }
 
         function botonAdelante(){
@@ -109,12 +120,29 @@
         function clickNota(){
             parpadear(boton);
         }
+        function clickNota1(){
+            parpadear(nota);
+        }
 
         boton.click(function(){
             if(boton.css('cursor') == 'pointer'){
                 dejarParpadear(boton);
                 aplicacion.reproducirAudio(audio[1], finalPagina, 1);
                 animacionEntrada(popup, 'default', 1);
+            }
+        });
+
+        nota.click(function(){
+            if(nota.css('cursor') == 'pointer'){
+                dejarParpadear(nota);
+                animacionEntrada(popup1, 'default', 1);
+            }
+        });
+        popup1.click(function(){
+            if(popup1.css('cursor') == 'pointer'){
+                animacionSalida(nota, 'default', 1);
+                animacionSalida(popup1, 'default', 1);
+                botonAdelante();
             }
         });
 
