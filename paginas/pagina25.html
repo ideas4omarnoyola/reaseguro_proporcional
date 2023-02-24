@@ -81,7 +81,9 @@
 
         // Audios------------------------------------------------------
         const audio = [
-            new Audio('../audios/Proporcional_26_1.mp3'),
+            new Audio('../audios/Proporcional_25_1.mp3'),
+            new Audio('../audios/s_bien.mp3'),
+            new Audio('../audios/s_mal.mp3'),
         ]
 
         // Al cargarse la página
@@ -133,6 +135,7 @@
             if(boton1.css('cursor') == 'pointer'){
                 animacionEntrada(tache1, 'default', 1);
                 animacionSalida(boton2, 'default', 1);
+                audio[2].play();
 
                 setTimeout(() => {
                     parpadear(siguiente1);
@@ -143,6 +146,7 @@
             if(boton2.css('cursor') == 'pointer'){
                 animacionEntrada(paloma2, 'default', 1);
                 animacionSalida(boton1, 'default', 1);
+                audio[1].play();
 
                 aciertos++;
 
@@ -164,6 +168,7 @@
                 animacionEntrada(paloma1, 'default', 1);
                 animacionSalida(boton4, 'default', 1);
 
+                audio[1].play();
                 aciertos++;
 
                 setTimeout(() => {
@@ -176,6 +181,8 @@
             if(boton4.css('cursor') == 'pointer'){
                 animacionEntrada(tache2, 'default', 1);
                 animacionSalida(boton3, 'default', 1);
+
+                audio[2].play();
 
                 setTimeout(() => {
                     parpadear(siguiente2);
