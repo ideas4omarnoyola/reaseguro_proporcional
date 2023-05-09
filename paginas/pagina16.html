@@ -44,6 +44,7 @@
 
         // Audios------------------------------------------------------
         const audio = [
+            new Audio('../audios/Proporcional_16_0.mp3'),
             new Audio('../audios/Proporcional_16_1.mp3'),
             new Audio('../audios/Proporcional_16_2.mp3'),
         ]
@@ -55,8 +56,12 @@
         });
 
         function iniciarContenido(){
-            aplicacion.reproducirAudio(audio[0], clickNota, 1);
+            aplicacion.reproducirAudio(audio[0], locutar, 1);
             animacionEntrada(info, 'default', 1);
+        }
+
+        function locutar(){
+            aplicacion.reproducirAudio(audio[1], clickNota, 1);
         }
 
         function clickNota(){
@@ -66,7 +71,7 @@
         boton.click(function(){
             if(boton.css('cursor') == 'pointer'){
                 dejarParpadear(boton);
-                aplicacion.reproducirAudio(audio[1], finalPagina, 1);
+                aplicacion.reproducirAudio(audio[2], finalPagina, 1);
                 animacionEntrada(popup, 'default', 1);
             }
         });
